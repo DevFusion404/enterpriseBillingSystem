@@ -1,0 +1,249 @@
+{
+  "repository": "enterprise_billing_system",
+  "language": "java",
+  "version": "1.0",
+  "plans": [
+    {
+      "plan_id": "plan_pkg_geometry_pi",
+      "target": "src/com/enterprise/geometry/ShippingPackageGeometry.java",
+      "smell": "MagicNumber",
+      "description": "Extract geometry packaging float literal 3.14159 into constant PI_VALUE",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/com/enterprise/geometry/ShippingPackageGeometry.java",
+            "class": "ShippingPackageGeometry",
+            "method": "calculateArea",
+            "lines": [5, 5]
+          },
+          "parameters": {
+            "source_file": "src/com/enterprise/geometry/ShippingPackageGeometry.java",
+            "constant_name": "PI_VALUE",
+            "literal_value": 3.14159,
+            "source_line": 5
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "plan_network_port_exception",
+      "target": "src/com/enterprise/network/PortParser.java",
+      "smell": "BareExcept",
+      "description": "Narrow broad catch (Exception e) to specific catch (NumberFormatException e)",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Replace Bare Except with Specific Exception",
+          "target": {
+            "file": "src/com/enterprise/network/PortParser.java",
+            "class": "PortParser",
+            "method": "parsePort",
+            "lines": [7, 7]
+          },
+          "parameters": {
+            "source_file": "src/com/enterprise/network/PortParser.java",
+            "class_name": "PortParser",
+            "method": "parsePort",
+            "source_line": 7,
+            "original_exception_type": "Exception",
+            "target_exception_type": "NumberFormatException"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "plan_user_reg_param_object",
+      "target": "src/com/enterprise/model/UserRegistration.java",
+      "smell": "TooManyParameters",
+      "description": "Introduce RegistrationData parameter object class for registerUser method",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Parameter Object",
+          "target": {
+            "file": "src/com/enterprise/model/UserRegistration.java",
+            "class": "UserRegistration",
+            "method": "registerUser"
+          },
+          "parameters": {
+            "source_file": "src/com/enterprise/model/UserRegistration.java",
+            "source_class": "UserRegistration",
+            "method": "registerUser",
+            "parameter_object_name": "RegistrationData"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "plan_formatter_rename",
+      "target": "src/com/enterprise/util/DataFormatter.java",
+      "smell": "CrypticMethodName",
+      "description": "Rename cryptic DataFormatter.calcDat to calculateFormattedData",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Rename Method",
+          "target": {
+            "file": "src/com/enterprise/util/DataFormatter.java",
+            "class": "DataFormatter",
+            "method": "calcDat"
+          },
+          "parameters": {
+            "source_file": "src/com/enterprise/util/DataFormatter.java",
+            "source_class": "DataFormatter",
+            "method": "calcDat",
+            "new_name": "calculateFormattedData"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "plan_voucher_threshold",
+      "target": "src/com/enterprise/billing/VoucherService.java",
+      "smell": "MagicNumber",
+      "description": "Extract VIP threshold literal 1000 into constant MIN_DISCOUNT_THRESHOLD",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/com/enterprise/billing/VoucherService.java",
+            "class": "VoucherService",
+            "method": "applyDiscount",
+            "lines": [5, 5]
+          },
+          "parameters": {
+            "source_file": "src/com/enterprise/billing/VoucherService.java",
+            "constant_name": "MIN_DISCOUNT_THRESHOLD",
+            "literal_value": 1000,
+            "source_line": 5
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "plan_batch_extract_method",
+      "target": "src/com/enterprise/billing/BatchProcessor.java",
+      "smell": "LongMethod",
+      "description": "Extract batch iteration loop into helper method calculateTotalSquared",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Extract Method",
+          "target": {
+            "file": "src/com/enterprise/billing/BatchProcessor.java",
+            "class": "BatchProcessor",
+            "method": "processBatch",
+            "lines": [7, 11]
+          },
+          "parameters": {
+            "source_file": "src/com/enterprise/billing/BatchProcessor.java",
+            "source_class": "BatchProcessor",
+            "method": "processBatch",
+            "new_method_name": "calculateTotalSquared",
+            "source_lines": [7, 11]
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "plan_config_reader_narrow",
+      "target": "src/com/enterprise/io/ConfigReader.java",
+      "smell": "BareExcept",
+      "description": "Narrow broad catch (Exception e) on file I/O to catch (IOException e)",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Replace Bare Except with Specific Exception",
+          "target": {
+            "file": "src/com/enterprise/io/ConfigReader.java",
+            "class": "ConfigReader",
+            "method": "readConfig",
+            "lines": [10, 10]
+          },
+          "parameters": {
+            "source_file": "src/com/enterprise/io/ConfigReader.java",
+            "class_name": "ConfigReader",
+            "method": "readConfig",
+            "source_line": 10,
+            "original_exception_type": "Exception",
+            "target_exception_type": "IOException"
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "plan_tax_calculator_rate",
+      "target": "src/com/enterprise/billing/TaxCalculator.java",
+      "smell": "MagicNumber",
+      "description": "Extract corporate tax rate literal 0.15 into constant DEFAULT_TAX_RATE",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/com/enterprise/billing/TaxCalculator.java",
+            "class": "TaxCalculator",
+            "method": "calculateNetIncome",
+            "lines": [5, 5]
+          },
+          "parameters": {
+            "source_file": "src/com/enterprise/billing/TaxCalculator.java",
+            "constant_name": "DEFAULT_TAX_RATE",
+            "literal_value": 0.15,
+            "source_line": 5
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "plan_status_validator_const",
+      "target": "src/com/enterprise/billing/OrderStatusValidator.java",
+      "smell": "MagicNumber",
+      "description": "Extract magic string literal PENDING into constant STATUS_PENDING",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Introduce Constant",
+          "target": {
+            "file": "src/com/enterprise/billing/OrderStatusValidator.java",
+            "class": "OrderStatusValidator",
+            "method": "isPending",
+            "lines": [5, 5]
+          },
+          "parameters": {
+            "source_file": "src/com/enterprise/billing/OrderStatusValidator.java",
+            "constant_name": "STATUS_PENDING",
+            "literal_value": "PENDING",
+            "source_line": 5
+          }
+        }
+      ]
+    },
+    {
+      "plan_id": "plan_invoice_rename_method",
+      "target": "src/com/enterprise/billing/InvoiceService.java",
+      "smell": "CrypticMethodName",
+      "description": "Rename cryptic InvoiceService.calcTot to calculateTotal",
+      "steps": [
+        {
+          "step_id": 1,
+          "refactoring": "Rename Method",
+          "target": {
+            "file": "src/com/enterprise/billing/InvoiceService.java",
+            "class": "InvoiceService",
+            "method": "calcTot"
+          },
+          "parameters": {
+            "source_file": "src/com/enterprise/billing/InvoiceService.java",
+            "source_class": "InvoiceService",
+            "method": "calcTot",
+            "new_name": "calculateTotal"
+          }
+        }
+      ]
+    }
+  ]
+}
